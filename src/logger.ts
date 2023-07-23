@@ -1,5 +1,4 @@
 import winston from 'winston';
-import BrowserConsole from 'winston-transport-browserconsole';
 
 const colors = {
   error: 'red',
@@ -28,7 +27,7 @@ const level = getLogLevel();
 // Create a Winston logger instance
 const logger = winston.createLogger({
   level,
-  transports: [new BrowserConsole()],
+  transports: [new winston.transports.Console()],
   format: winston.format.combine(
     winston.format.colorize({ all: true }),
     winston.format.timestamp(),
