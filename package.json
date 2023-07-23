@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "del ./build/*",
     "prebuild": "npm run clean",
-    "build": "tsc",
+    "build": "tsc && tsc-alias",
     "pub": "npm run build && npm publish"
   },
   "keywords": [],
@@ -23,6 +23,7 @@
     "@types/jsonwebtoken": "^9.0.2",
     "@types/node": "^20.4.4",
     "del-cli": "^5.0.0",
+    "tsc-alias": "^1.8.7",
     "typescript": "^5.1.6"
   },
   "dependencies": {
