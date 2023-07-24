@@ -1,4 +1,5 @@
 import winston from 'winston';
+import morgan from 'morgan';
 
 const colors = {
   error: 'red',
@@ -43,4 +44,10 @@ const logger = winston.createLogger({
   ),
 });
 
+const configuredMorgan = () =>
+  morgan('combined', {
+    stream: { write: (message) => logger.info(message.trim()) },
+  });
+
+export { logger, configuredMorgan };
 export default logger;
