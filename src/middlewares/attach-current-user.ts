@@ -26,7 +26,8 @@ export const attachCurrentUser = (
   try {
     const payload = verifyJwt(req.session.jwt) as UserPayload;
     req.currentUser = payload;
+    return next();
   } catch (err) {
-    next();
+    return next();
   }
 };
