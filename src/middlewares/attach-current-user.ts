@@ -9,21 +9,24 @@ const verifyJwt = (token: string) => {
   return jwt.verify(token, env.JWT_SECRET);
 };
 
+/**
+ * Attach the current user to the request object
+ * if the user is authenticated.
+ * Otherwise, do nothing and just call next().
+ */
 export const attachCurrentUser = (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   if (!req.session?.jwt) {
-    throw new BadRequestError('Missing Authentication Token.');
+    return next();
   }
 
   try {
     const payload = verifyJwt(req.session.jwt) as UserPayload;
     req.currentUser = payload;
   } catch (err) {
-    throw new NotAuthorizedError();
-  } finally {
     next();
   }
 };
