@@ -44,10 +44,10 @@ const logger = winston.createLogger({
   ),
 });
 
-const configuredMorgan = () =>
+const configureMorgan = () =>
   morgan('combined', {
     stream: { write: (message) => logger.info(message.trim()) },
   });
 
-export { logger, configuredMorgan };
+export { logger, configureMorgan };
 export default logger;
